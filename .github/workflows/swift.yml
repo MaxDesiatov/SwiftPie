@@ -7,7 +7,17 @@ on:
     branches: [main]
 
 jobs:
-  catalina_build:
+  macos_mojave_build:
+    runs-on: macos-10.14
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build
+        run: swift build
+      - name: Run tests
+        run: swift test
+
+  macos_catalina_build:
     runs-on: macos-10.15
 
     steps:
@@ -17,7 +27,7 @@ jobs:
       - name: Run tests
         run: swift test
 
-  big_sur_build:
+  macos_big_sur_build:
     runs-on: macos-11
 
     steps:
@@ -27,7 +37,7 @@ jobs:
       - name: Run tests
         run: swift test
 
-  ubuntu16.04_build:
+  ubuntu_16_04_build:
     runs-on: ubuntu-16.04
 
     steps:
@@ -37,7 +47,7 @@ jobs:
       - name: Run tests
         run: swift test
 
-  ubuntu18.04_build:
+  ubuntu_18_04_build:
     runs-on: ubuntu-18.04
 
     steps:
@@ -47,7 +57,7 @@ jobs:
       - name: Run tests
         run: swift test
 
-  ubuntu20.04_build:
+  ubuntu_20_04_build:
     runs-on: ubuntu-20.04
 
     steps:
