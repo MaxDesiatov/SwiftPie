@@ -1,3 +1,3 @@
 # SwiftPie
 
-A description of this package.
+A Swift rewrite of ["A Tutorial Implementation of a Dependently Typed Lambda Calculus"](https://www.andres-loeh.de/LambdaPi/).
