@@ -37,16 +37,6 @@ jobs:
       - name: Run tests
         run: swift test
 
-  ubuntu_16_04_build:
-    runs-on: ubuntu-16.04
-
-    steps:
-      - uses: actions/checkout@v2
-      - name: Build
-        run: swift build
-      - name: Run tests
-        run: swift test
-
   ubuntu_18_04_build:
     runs-on: ubuntu-18.04
 
