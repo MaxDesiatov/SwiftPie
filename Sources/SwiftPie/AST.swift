@@ -8,7 +8,7 @@ enum Name: Hashable {
   case quote(Int)
 }
 
-indirect enum CheckedTerm {
+indirect enum CheckedTerm: Equatable {
   case inferred(InferredTerm)
   case lambda(CheckedTerm)
   case zero
@@ -20,7 +20,7 @@ indirect enum CheckedTerm {
   case fSucc(CheckedTerm, CheckedTerm)
 }
 
-indirect enum InferredTerm {
+indirect enum InferredTerm: Equatable {
   case annotation(CheckedTerm, CheckedTerm)
   case star
   case pi(CheckedTerm, CheckedTerm)
