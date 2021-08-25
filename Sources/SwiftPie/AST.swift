@@ -8,33 +8,33 @@ enum Name: Hashable {
   case quote(Int)
 }
 
-indirect enum Checked {
-  case inferred(Inferred)
-  case lambda(Checked)
+indirect enum CheckedTerm {
+  case inferred(InferredTerm)
+  case lambda(CheckedTerm)
   case zero
-  case succ(Checked)
-  case `nil`(Checked)
-  case cons(Checked, Checked, Checked, Checked)
-  case refl(Checked, Checked)
-  case fZero(Checked)
-  case fSucc(Checked, Checked)
+  case succ(CheckedTerm)
+  case `nil`(CheckedTerm)
+  case cons(CheckedTerm, CheckedTerm, CheckedTerm, CheckedTerm)
+  case refl(CheckedTerm, CheckedTerm)
+  case fZero(CheckedTerm)
+  case fSucc(CheckedTerm, CheckedTerm)
 }
 
-indirect enum Inferred {
-  case annotation(Checked, Checked)
+indirect enum InferredTerm {
+  case annotation(CheckedTerm, CheckedTerm)
   case star
-  case pi(Checked, Checked)
+  case pi(CheckedTerm, CheckedTerm)
   case bound(Int)
   case free(Name)
-  case dollarOperator(Inferred, Checked)
+  case dollarOperator(InferredTerm, CheckedTerm)
   case nat
-  case natElim(Checked, Checked, Checked, Checked)
-  case vec(Checked, Checked)
-  case vecElim(Checked, Checked, Checked, Checked, Checked, Checked)
-  case eq(Checked, Checked, Checked)
-  case eqElim(Checked, Checked, Checked, Checked, Checked, Checked)
-  case fin(Checked)
-  case finElim(Checked, Checked, Checked, Checked, Checked)
+  case natElim(CheckedTerm, CheckedTerm, CheckedTerm, CheckedTerm)
+  case vec(CheckedTerm, CheckedTerm)
+  case vecElim(CheckedTerm, CheckedTerm, CheckedTerm, CheckedTerm, CheckedTerm, CheckedTerm)
+  case eq(CheckedTerm, CheckedTerm, CheckedTerm)
+  case eqElim(CheckedTerm, CheckedTerm, CheckedTerm, CheckedTerm, CheckedTerm, CheckedTerm)
+  case fin(CheckedTerm)
+  case finElim(CheckedTerm, CheckedTerm, CheckedTerm, CheckedTerm, CheckedTerm)
 }
 
 indirect enum Value {
@@ -79,4 +79,4 @@ indirect enum Neutral {
 typealias Env = [Value]
 typealias Type = Value
 typealias Context = [Name: Type]
-typealias NameEnv<V> = [Name: V]
+typealias NameEnv = [Name: Value]

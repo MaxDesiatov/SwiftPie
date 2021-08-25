@@ -2,8 +2,8 @@
 //  Created by Max Desiatov on 25/08/2021.
 //
 
-extension Inferred {
-  func subst(_ i: Int, _ inferred: Inferred) -> Inferred {
+extension InferredTerm {
+  func subst(_ i: Int, _ inferred: InferredTerm) -> InferredTerm {
     switch self {
     case let .annotation(c, c1):
       return .annotation(c.subst(i, inferred), c1.subst(i, inferred))
@@ -75,8 +75,8 @@ extension Inferred {
   }
 }
 
-extension Checked {
-  func subst(_ i: Int, _ inferred: Inferred) -> Checked {
+extension CheckedTerm {
+  func subst(_ i: Int, _ inferred: InferredTerm) -> CheckedTerm {
     switch self {
     case let .inferred(inferred1):
       return .inferred(inferred1.subst(i, inferred))

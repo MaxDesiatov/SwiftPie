@@ -2,7 +2,13 @@
 //  Created by Max Desiatov on 24/08/2021.
 //
 
-func quote(_ i: Int, _ value: Value) -> Checked {
+extension Value {
+  var quote: CheckedTerm {
+    SwiftPie.quote(0, self)
+  }
+}
+
+private func quote(_ i: Int, _ value: Value) -> CheckedTerm {
   switch value {
   case let .lambda(t):
     return .lambda(quote(i + 1, t(.free(.quote(i)))))
@@ -51,7 +57,7 @@ func quote(_ i: Int, _ value: Value) -> Checked {
   }
 }
 
-private func neutralQuote(_ i: Int, _ neutral: Neutral) -> Inferred {
+private func neutralQuote(_ i: Int, _ neutral: Neutral) -> InferredTerm {
   switch neutral {
   case let .free(v):
     return boundFree(i, v)
@@ -87,7 +93,7 @@ private func neutralQuote(_ i: Int, _ neutral: Neutral) -> Inferred {
   }
 }
 
-private func boundFree(_ i: Int, _ name: Name) -> Inferred {
+private func boundFree(_ i: Int, _ name: Name) -> InferredTerm {
   if case let .quote(k) = name {
     return .bound(max(0, i - k - 1))
   } else {

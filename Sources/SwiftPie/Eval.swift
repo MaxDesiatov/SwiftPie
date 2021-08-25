@@ -2,8 +2,8 @@
 //  Created by Max Desiatov on 23/08/2021.
 //
 
-extension Checked {
-  func eval(_ names: NameEnv<Value>, _ environment: Env) -> Value {
+extension CheckedTerm {
+  func eval(_ names: NameEnv, _ environment: Env) -> Value {
     switch self {
     case let .inferred(i):
       return i.eval(names, environment)
@@ -46,8 +46,8 @@ extension Checked {
   }
 }
 
-extension Inferred {
-  func eval(_ names: NameEnv<Value>, _ environment: Env) -> Value {
+extension InferredTerm {
+  func eval(_ names: NameEnv, _ environment: Env) -> Value {
     switch self {
     case let .annotation(c, _):
       return c.eval(names, environment)
