@@ -2,19 +2,12 @@
 //  Created by Max Desiatov on 25/08/2021.
 //
 
-enum TypeError: Error {
+enum PieError: Error {
   case typeMismatch(Type, Type)
   case unknownTypeMismatch
-}
-
-extension InferredTerm {
-  func infer(
-    _ i: Int,
-    _ names: NameEnv,
-    _ context: Context
-  ) throws -> Type {
-    fatalError()
-  }
+  case unknownIdentifier(Name)
+  case illegalApplication
+  case noTypeMatch(InferredTerm)
 }
 
 extension CheckedTerm {
@@ -83,7 +76,7 @@ extension CheckedTerm {
       try f.typeCheck(i, names, context, .fin(mVal))
 
     default:
-      throw TypeError.unknownTypeMismatch
+      throw PieError.unknownTypeMismatch
     }
   }
 }
@@ -91,7 +84,7 @@ extension CheckedTerm {
 extension Type {
   func expectMatches(_ type: Type) throws {
     guard quote == type.quote else {
-      throw TypeError.typeMismatch(self, type)
+      throw PieError.typeMismatch(self, type)
     }
   }
 }
