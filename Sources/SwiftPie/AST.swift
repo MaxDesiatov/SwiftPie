@@ -2,6 +2,17 @@
 //  Created by Max Desiatov on 23/08/2021.
 //
 
+enum Statement {
+  /// let x = t
+  case letBinding(identifier: String, InferredTerm)
+
+  /// assume x :: t, assume x :: *
+  case assume([(String, CheckedTerm)])
+
+  /// print x
+  case print(String)
+}
+
 enum Name: Hashable {
   case global(String)
   case local(Int)
